@@ -80,6 +80,42 @@ ISO 27001 Requirement: Document the ISMS and make relevant documentation availab
 - Document: `README.md`
   - Content: Provides an overview of the project, instructions for setting up and running the project, and additional project details.
 
+## Coding
+### `monitoring.py`
+The `monitoring.py` script is designed to check if certain services are running on your Ubuntu system.
+
+#### Importing
+- The `os` module in Python provides a way to interact with the operating system. In this script, it is used to run system commands.
+
+#### Defining the Function
+- The `check_services` function is responsible for checking the status of the specified services.
+
+#### List of Services to Check
+- A list of service names that you want to check. In this script, it includes `ssh` and `apache2`.
+
+#### Looping Through the Services
+- The script loops through each service in the `services` list.
+- `os.system(f"systemctl is-active --quiet {service}")` runs the system command systemctl is-active --quiet <service>.
+- The `systemctl is-active --quiet` command checks if a service is active without producing output. If the service is active, it returns `0`; otherwise, it returns a non-zero status.
+
+#### Checking the Service Status
+- If the status is not `0`, it means the service is not running.
+- The script prints a message indicating which service is not running.
+
+#### Main Execution Block
+- This block ensures that the `check_services` function is called only when the script is run directly (not when imported as a module).
+
+### `assets.py`
+The `assets.py` script is designed to list information assets and write them to a text file. 
+
+#### List of Information Assets
+- A list of information assets. In this example, it includes `Server1`, `Database1`, `Workstation1`, and `Router1`.
+
+#### Writing Assets to a File
+- `with open('assets.txt', 'w') as f`: This opens the file `assets.txt` in write mode. If the file does not exist, it will be created. The with statement ensures the file is properly closed after the block of code is executed.
+- `for asset in assets`: This loops through each asset in the `assets` list.
+- `f.write(f"{asset}\n")`: This writes the asset to the file, followed by a newline character. The `f` string formatting is used to include the asset name in the string.
+
 ## Summary
 
 This project is designed to demonstrate the practical application of the ISO 27000-series standards in establishing, implementing, maintaining, and continually improving an Information Security Management System (ISMS). It covers defining the ISMS scope, creating an information security policy, conducting risk assessments, implementing controls, monitoring, reviewing, and continually improving the ISMS. Each component is aligned with the requirements of the ISO 27000 series, providing a comprehensive framework for managing information security within an organization.
